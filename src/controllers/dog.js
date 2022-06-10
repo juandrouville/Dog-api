@@ -1,4 +1,4 @@
-const { Dog,Temperament } = require('../db');
+// const { Dog,Temperament } = require('../db');
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 const { URL_DOGS,API_KEY} = process.env;
@@ -22,10 +22,10 @@ async function getAllDogs(req,res){
             var allDogs ={};
             console.log(countDB);
             console.log(dogsAPI.length);
-            if( countDB === 0) {
-                console.log('entro a allCreates');
-                // await allCreate(dogsAPI);
-            };
+            // if( countDB === 0) {
+            //     console.log('entro a allCreates');
+            //     // await allCreate(dogsAPI);
+            // };
             
             // var allDogs = await Dog.findAll({
             //     limit:limit,
