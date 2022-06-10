@@ -18,24 +18,25 @@ async function getAllDogs(req,res){
    if(!queryName){
        try {
             var dogsAPI = (await axios.get(`${URL_DOGS}?key=${API_KEY}`)).data;
-            var countDB = await Dog.count();
+            // var countDB = await Dog.count();
+            var allDogs ={};
             console.log(countDB);
             console.log(dogsAPI.length);
             if( countDB === 0) {
                 console.log('entro a allCreates');
-                await allCreate(dogsAPI);
+                // await allCreate(dogsAPI);
             };
             
-            var allDogs = await Dog.findAll({
-                limit:limit,
-                offset:offset,
-                order:[["name",order]],
-                attributes:{exclude : ["createdAt","updatedAt","dogApi"]},
-                include:{
-                    model:Temperament,
-                    attributes:['id','name'],
-                }
-            });
+            // var allDogs = await Dog.findAll({
+            //     limit:limit,
+            //     offset:offset,
+            //     order:[["name",order]],
+            //     attributes:{exclude : ["createdAt","updatedAt","dogApi"]},
+            //     include:{
+            //         model:Temperament,
+            //         attributes:['id','name'],
+            //     }
+            // });
             return res.json(allDogs);
                 
         } catch(error){ console.error(error)};
