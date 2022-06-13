@@ -7,7 +7,7 @@ const { getAllTemperaments,getDogsByTemp } = require('../controllers/temperament
 
 
 
-router.get('/',getAllDogs);
+router.get('/dogs',getAllDogs);
 // router.get('/dogs/:id',getDogById);
 // router.get('/dogs/temperaments/:temperament',getDogsByTemp);
 // router.get('/dogs/get/created',getOnlyCreate);
