@@ -1,11 +1,25 @@
 
 const server = require('./src/app');
-const { conn } = require('./src/db.js');
+const sequelize = require('./src/db.js');
 
 
-// Syncing all the models at once.
-// conn.sync({ force: false }).then(() => {
-  server.listen( process.env.PORT || 3001 , () => {
-    console.log(process.env.PORT); // eslint-disable-line no-console
-  });
-// });
+async function main(){
+  try{
+    
+    
+    // conn.sync({ force: false }).then(() => {
+      server.listen( process.env.PORT || 3001 , () => {
+        sequelize.authenticate().then(() => {
+          console.log('db conected');
+        }).catch(error => {
+          console.log('NO DB CONECTED',error);
+        });
+        console.log(process.env.PORT); // eslint-disable-line no-console
+      });
+      // });
+  } catch(error){
+    console.log(error);
+  }
+  };
+
+  main();

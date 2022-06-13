@@ -1,14 +1,18 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize }  = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER,DB_PASSWORD,DB_HOST,DB_NAME
+  DATABASE_USER,DATABASE_PASSWORD,DATABASE_HOST,DATABASE_NAME
 } = process.env;
 
-let sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, 
-  native: false, 
+const sequelize = new Sequelize(DATABASE_NAME,DATABASE_USER,DATABASE_PASSWORD,{
+  host:DATABASE_HOST,
+  dialect:'postgres',
+  "dialectOptions": {
+    "ssl": true,
+    rejectUnauthorized: false,
+  },
 });
 const basename = path.basename(__filename);
 
@@ -35,7 +39,6 @@ const { Dog, Temperament } = sequelize.models;
 Dog.belongsToMany(Temperament,{through:"dog-temperament"});
 Temperament.belongsToMany(Dog,{through:"dog-temperament"});
 
-module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-};
+module.exports = sequelize;
+ // para poder importar los modelos así: const { Product, User } = require('./db.js');
+// para importart la conexión { conn } = require('./db.js');
