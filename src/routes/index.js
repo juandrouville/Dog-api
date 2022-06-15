@@ -8,11 +8,11 @@ const { getAllTemperaments,getDogsByTemp } = require('../controllers/temperament
 
 
 router.get('/dogs',getAllDogs);
-// router.get('/dogs/:id',getDogById);
-// router.get('/dogs/temperaments/:temperament',getDogsByTemp);
-// router.get('/dogs/get/created',getOnlyCreate);
-// router.get('/temperaments',getAllTemperaments);
-// router.get('/dogs/order/peso',getByPeso);
-// router.post('/dogs',createDog);
+router.get('/dogs/:id',getDogById);
+router.get('/dogs/temperaments/:temperament',getDogsByTemp);
+router.get('/dogs/get/created',getOnlyCreate);
+router.get('/temperaments',getAllTemperaments);
+router.get('/dogs/order/peso',getByPeso);
+router.post('/dogs',createDog);
 
 module.exports = router;

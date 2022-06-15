@@ -1,4 +1,5 @@
-const { Dog,Temperament } = require('../db');
+const sequelize = require('../db');
+const { Dog, Temperament } = sequelize.models;
 const { Op } = require('sequelize');
 const { v4: uuidv4 } = require('uuid');
 
